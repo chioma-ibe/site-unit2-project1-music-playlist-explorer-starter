@@ -1,0 +1,26 @@
+[
+  {
+    "playlistID": "001",
+    "playlist_name": "Chill Vibes",
+    "playlist_author": "DJ Smooth",
+    "playlist_art": "https://picsum.photos/300?random=1",
+    "likes": 42,
+    "songs": [
+      "Ocean Drive – Duke Dumont",
+      "Sunset Lover – Petit Biscuit",
+      "Electric Feel – MGMT"
+    ]
+  },
+  {
+    "playlistID": "002",
+    "playlist_name": "Workout Hits",
+    "playlist_author": "BeastMode",
+    "playlist_art": "https://picsum.photos/300?random=2",
+    "likes": 17,
+    "songs": [
+      "Stronger – Kanye West",
+      "Lose Yourself – Eminem",
+      "Can't Hold Us – Macklemore & Ryan Lewis"
+    ]
+  }
+]
