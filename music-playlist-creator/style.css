@@ -82,18 +82,8 @@ header {
 }
 
 
-.modal-content{
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-right: 10px;
-    width:100%;
-    height: 90%;
-    z-index: 1000;
-   
-}
-
 .modal-overlay{
+    display: none; 
     pointer-events: none;
      width: 50%; 
      height: 50%;  
@@ -101,17 +91,28 @@ header {
     background-color: rgb(154, 148, 148); 
     background-color: rgb(223, 209, 209); 
     border-radius: 2px;
-    position: absolute;
+    position: fixed;
     top: 30%;
     left: 25%;
-    z-index: 999;
-
+    z-index: 1;
 }
 
-.modal-overlay.open{
-    opacity: 1;
-    pointer-events: auto;
+.modal-content{
+    display: flex; 
+    flex-direction: column;
+    gap: 30px;
+    margin-right: 10px;
+    width:100%;
+    height: 90%;
+   
 }
+
+.modal-content img{
+
+    height: 20px;
+    width: 100px;
+}
+
 
 .title-info{
     display: flex;
@@ -188,6 +189,7 @@ ul {
     position: absolute;
     right: 15px;
     top:10px;
+    background: rgb(186, 55, 55);
 }
 
 footer{

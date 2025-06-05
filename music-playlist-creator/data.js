@@ -1,7 +1,8 @@
-[
+
+const playlists = [
   {
     "playlistID": "001",
-    "playlist_name": "Chill Vibes",
+    "playlist_name": "just Vibes",
     "playlist_author": "DJ Smooth",
     "playlist_art": "https://picsum.photos/300?random=1",
     "likes": 42,
