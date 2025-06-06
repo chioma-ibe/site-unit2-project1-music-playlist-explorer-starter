@@ -4,16 +4,16 @@ const modalContent = document.querySelector('.modal-content');
 const cardContainer = document.getElementById('playlist-cards');
 
 async function loadPlaylists() {
-  const container = document.getElementById('playlist-cards');
-  container.innerHTML = '<p class="empty">Loading playlists…</p>';
+    const container = document.getElementById('playlist-cards');
+    container.innerHTML = '<p class="empty">Loading playlists…</p>';
 
-    if (playlists.length === 0) {
-      container.innerHTML = '<p class="empty">No playlists added</p>';
-      return;
+    if (window.playlists.length === 0) {
+        container.innerHTML = '<p class="empty">No playlists added</p>';
+        return;
     } else {
         container.innerHTML = '';
 
-        playlists.forEach(pl => {
+        window.playlists.forEach(pl => {
             const card = document.createElement('article');
             card.className = 'playlist';
             card.id = `playlist${pl.playlistID}`;
@@ -23,25 +23,32 @@ async function loadPlaylists() {
                 <h3>${pl.playlist_name}</h3>
                 <p>${pl.playlist_author}</p>
                 <div class="playlist-footer">
-                <button class="like-btn" aria-label="like/unlike">&#x2661;</button>
-                <span class="likes">${pl.likes ?? 0}</span>
+                    <button class="like-btn" aria-label="like/unlike">&#x2661;</button>
+                    <span class="likes">${pl.likes ?? 0}</span>
+                    <button class="edit-btn" aria-label="edit playlist">Edit</button>
                 </div>
             `;
             const likeBtn   = card.querySelector('.like-btn');
             const likesSpan = card.querySelector('.likes');
+            const editBtn   = card.querySelector('.edit-btn');
 
             likeBtn.addEventListener('click', e => {
-            e.stopPropagation();
+                e.stopPropagation();
 
-            const liked = likeBtn.classList.toggle('liked');
-            pl.likes    = (pl.likes ?? 0) + (liked ? 1 : -1);
-            likesSpan.textContent = pl.likes;
+                const liked = likeBtn.classList.toggle('liked');
+                pl.likes    = (pl.likes ?? 0) + (liked ? 1 : -1);
+                likesSpan.textContent = pl.likes;
 
-            if (liked) {
-                likeBtn.innerHTML = '&#x2665;'; 
-            } else {
-                likeBtn.innerHTML = '&#x2661;'; 
-            }
+                if (liked) {
+                    likeBtn.innerHTML = '&#x2665;';
+                } else {
+                    likeBtn.innerHTML = '&#x2661;';
+                }
+            });
+
+            editBtn.addEventListener('click', e => {
+                e.stopPropagation();
+                openEditModal(pl);
             });
 
 
@@ -97,13 +104,13 @@ function openModal(playlist) {
         const closeBtn = modalContent.querySelector('#closeBtn');
         closeBtn.addEventListener('click', closeModal);
 
-        
+
         const shuffleBtn = modalContent.querySelector('#shuffleBtn');
         shuffleBtn.addEventListener('click', () => {
             shuffleSongs(currentPlaylist);
         });
 
-        
+
         const deleteBtn = modalContent.querySelector('#deleteBtn');
         deleteBtn.addEventListener('click', () => {
             deletePlaylist(playlist.playlistID);
@@ -113,7 +120,7 @@ function openModal(playlist) {
         if (e.target === modalOverlay) closeModal();
         });
 
-    
+
 }
 
 function closeModal() {
@@ -124,17 +131,17 @@ function closeModal() {
 
 
 function deletePlaylist(playlistID) {
-  
-  const playlistIndex = playlists.findIndex(pl => pl.playlistID === playlistID);
+
+  const playlistIndex = window.playlists.findIndex(pl => pl.playlistID === playlistID);
 
 
   if (playlistIndex !== -1) {
-    playlists.splice(playlistIndex, 1);
+    window.playlists.splice(playlistIndex, 1);
 
 
     closeModal();
 
-    
+
     loadPlaylists();
   }
 }
@@ -164,16 +171,130 @@ function shuffleSongs(playlist) {
 }
 
 
+function openEditModal(playlist) {
+    const playlistCopy = JSON.parse(JSON.stringify(playlist));
+
+    modalContent.innerHTML = `
+        <div class="modal-buttons">
+            <button class="button1" id="closeEditBtn" autofocus>Close</button>
+        </div>
+
+        <form class="edit-form" id="editPlaylistForm">
+            <div class="form-group">
+                <label for="playlist-name">Playlist Name</label>
+                <input type="text" id="playlist-name" value="${playlistCopy.playlist_name}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="playlist-author">Author</label>
+                <input type="text" id="playlist-author" value="${playlistCopy.playlist_author}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="playlist-art">Cover Image URL</label>
+                <input type="text" id="playlist-art" value="${playlistCopy.playlist_art}">
+            </div>
+
+            <div class="form-group">
+                <label>Songs</label>
+                <div id="songs-container">
+                    ${playlistCopy.songs.map((song, index) => `
+                        <div class="song-entry" data-index="${index}">
+                            <input type="text" class="song-title" placeholder="Title" value="${song.title || ''}" required>
+                            <input type="text" class="song-artist" placeholder="Artist" value="${song.artist || ''}">
+                            <input type="text" class="song-length" placeholder="Length (e.g. 3:45)" value="${song.length || ''}">
+                            <button type="button" class="remove-song-btn">Remove</button>
+                        </div>
+                    `).join('')}
+                </div>
+                <button type="button" class="add-song-btn" id="addSongBtn">Add Song</button>
+            </div>
+
+            <div class="form-buttons">
+                <button type="button" class="cancel-btn" id="cancelEditBtn">Cancel</button>
+                <button type="submit" class="save-btn">Save Changes</button>
+            </div>
+        </form>
+    `;
+
+    modalOverlay.classList.add('show');
+    cardContainer.classList.add('blur');
+    document.body.style.overflow = 'hidden';
+
+    const closeBtn = modalContent.querySelector('#closeEditBtn');
+    closeBtn.addEventListener('click', closeModal);
+
+    const cancelBtn = modalContent.querySelector('#cancelEditBtn');
+    cancelBtn.addEventListener('click', closeModal);
+
+    const addSongBtn = modalContent.querySelector('#addSongBtn');
+    addSongBtn.addEventListener('click', () => {
+        const songsContainer = document.getElementById('songs-container');
+        const newIndex = songsContainer.children.length;
+
+        const songEntry = document.createElement('div');
+        songEntry.className = 'song-entry';
+        songEntry.dataset.index = newIndex;
+
+        songEntry.innerHTML = `
+            <input type="text" class="song-title" placeholder="Title" required>
+            <input type="text" class="song-artist" placeholder="Artist">
+            <input type="text" class="song-length" placeholder="Length (e.g. 3:45)">
+            <button type="button" class="remove-song-btn">Remove</button>
+        `;
+
+        songsContainer.appendChild(songEntry);
+
+        const removeBtn = songEntry.querySelector('.remove-song-btn');
+        removeBtn.addEventListener('click', (e) => {
+            e.target.closest('.song-entry').remove();
+        });
+    });
+
+    const removeBtns = modalContent.querySelectorAll('.remove-song-btn');
+    removeBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.target.closest('.song-entry').remove();
+        });
+    });
+
+    const form = modalContent.querySelector('#editPlaylistForm');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('playlist-name').value;
+        const author = document.getElementById('playlist-author').value;
+        const art = document.getElementById('playlist-art').value;
+
+        const songEntries = document.querySelectorAll('.song-entry');
+        const songs = Array.from(songEntries).map(entry => {
+            return {
+                title: entry.querySelector('.song-title').value,
+                artist: entry.querySelector('.song-artist').value,
+                length: entry.querySelector('.song-length').value
+            };
+        });
+
+        playlist.playlist_name = name;
+        playlist.playlist_author = author;
+        playlist.playlist_art = art;
+        playlist.songs = songs;
+
+        closeModal();
+        loadPlaylists();
+    });
+}
+
 function loadFeaturedPlaylist() {
             const featuredSection = document.getElementById('featured-playlist');
 
-            if (!playlists || playlists.length === 0) {
+            if (!window.playlists || window.playlists.length === 0) {
                 featuredSection.innerHTML = '<p class="empty">No playlists available</p>';
                 return;
             }
 
-            const randomIndex = Math.floor(Math.random() * playlists.length);
-            const featuredPlaylist = playlists[randomIndex];
+            const randomIndex = Math.floor(Math.random() * window.playlists.length);
+            const featuredPlaylist = window.playlists[randomIndex];
 
             featuredSection.innerHTML = `
                 <div class="featured-container">

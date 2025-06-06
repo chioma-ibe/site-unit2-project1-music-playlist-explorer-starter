@@ -459,8 +459,131 @@ nav a:hover {
   z-index: 1;
 }
 
+.edit-btn {
+  background: #1DB954;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 135px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.edit-btn:hover {
+  background-color: #1ED760;
+  transform: scale(1.05);
+}
+
 .playlist-footer{
   display:flex;
   align-items:center;
   gap:6px;
+}
+
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  padding: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.form-group input, .form-group textarea {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background-color: #282828;
+  color: white;
+  font-size: 14px;
+}
+
+.song-entry {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.song-entry input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background-color: #282828;
+  color: white;
+  font-size: 14px;
+}
+
+.remove-song-btn {
+  background: #E91429;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.add-song-btn {
+  background: #1DB954;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.save-btn {
+  background: #1DB954;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.cancel-btn {
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.save-btn:hover, .add-song-btn:hover {
+  background-color: #1ED760;
+  transform: scale(1.05);
+}
+
+.cancel-btn:hover, .remove-song-btn:hover {
+  background-color: #444;
+  transform: scale(1.05);
 }

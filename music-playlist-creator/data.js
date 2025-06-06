@@ -1,11 +1,11 @@
 
-const playlists = [
+window.playlists = [
   {
     "playlistID": "001",
     "playlist_name": "just Vibes",
     "playlist_author": "DJ Smooth",
     "playlist_art": "https://picsum.photos/300?random=1",
-    "likes": 42,
+    "likes": 0,
     "songs": [
       {
         "title": "Ocean Drive",
@@ -216,5 +216,4 @@ const playlists = [
     }
   ]
 }
-
 ]
