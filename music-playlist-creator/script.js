@@ -37,11 +37,10 @@ async function loadPlaylists() {
             pl.likes    = (pl.likes ?? 0) + (liked ? 1 : -1);
             likesSpan.textContent = pl.likes;
 
-            // Change heart from outline to filled when liked
             if (liked) {
-                likeBtn.innerHTML = '&#x2665;'; // Filled heart
+                likeBtn.innerHTML = '&#x2665;'; 
             } else {
-                likeBtn.innerHTML = '&#x2661;'; // Outline heart
+                likeBtn.innerHTML = '&#x2661;'; 
             }
             });
 
@@ -55,10 +54,8 @@ async function loadPlaylists() {
 }
 
 function openModal(playlist) {
-        // Create a copy of the playlist to work with
         const currentPlaylist = JSON.parse(JSON.stringify(playlist));
 
-        // modalContent.appendChild(button)
         modalContent.innerHTML = `
         <div class="modal-buttons">
           <button class="delete-btn" id="deleteBtn">Delete Playlist</button>

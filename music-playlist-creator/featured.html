@@ -27,21 +27,17 @@
 
     <script src="data.js"></script>
     <script>
-        // Function to select a random playlist and display it
         function loadFeaturedPlaylist() {
             const featuredSection = document.getElementById('featured-playlist');
 
-            // Check if playlists exist
             if (!playlists || playlists.length === 0) {
                 featuredSection.innerHTML = '<p class="empty">No playlists available</p>';
                 return;
             }
 
-            // Select a random playlist
             const randomIndex = Math.floor(Math.random() * playlists.length);
             const featuredPlaylist = playlists[randomIndex];
 
-            // Create the featured playlist layout
             featuredSection.innerHTML = `
                 <div class="featured-container">
                     <div class="featured-left">
@@ -70,8 +66,6 @@
                 </div>
             `;
         }
-
-        // Load the featured playlist when the page loads
         window.addEventListener('DOMContentLoaded', loadFeaturedPlaylist);
     </script>
 </body>
