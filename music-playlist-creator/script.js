@@ -162,3 +162,45 @@ function shuffleSongs(playlist) {
     </div>
   `).join('');
 }
+
+
+function loadFeaturedPlaylist() {
+            const featuredSection = document.getElementById('featured-playlist');
+
+            if (!playlists || playlists.length === 0) {
+                featuredSection.innerHTML = '<p class="empty">No playlists available</p>';
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * playlists.length);
+            const featuredPlaylist = playlists[randomIndex];
+
+            featuredSection.innerHTML = `
+                <div class="featured-container">
+                    <div class="featured-left">
+                        <img src="${featuredPlaylist.playlist_art}" alt="${featuredPlaylist.playlist_name}" class="featured-image" />
+                        <h2 class="featured-title">${featuredPlaylist.playlist_name}</h2>
+                        <p class="featured-author">Created by: ${featuredPlaylist.playlist_author}</p>
+                    </div>
+                    <div class="featured-right">
+                        <h3>Songs</h3>
+                        <div class="featured-songs">
+                            ${featuredPlaylist.songs.map((song, index) => `
+                                <div class="featured-song">
+                                    <span class="song-number">${index + 1}</span>
+                                    <div class="song-info">
+                                        <p class="song-title">${song.title ?? song}</p>
+                                        <p class="song-artist">${song.artist ?? ''}</p>
+                                        <p class="song-album">${song.album ?? ''}</p>
+                                    </div>
+                                    <div class="song-length">
+                                        <p>${song.length ?? ''}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        window.addEventListener('DOMContentLoaded', loadFeaturedPlaylist);
