@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Featured Playlist - Music Playlist Explorer</title>
+    <title>Featured Playlist</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 
     <link rel="stylesheet" href="style.css">
@@ -16,7 +16,6 @@
             <a href="index.html">Home</a>
         </nav>
     </header>
-
     <main>
         <section id="featured-playlist" class="featured-playlist">
             <!-- Featured playlist content will be loaded here dynamically -->
@@ -49,10 +48,6 @@
                         <img src="${featuredPlaylist.playlist_art}" alt="${featuredPlaylist.playlist_name}" class="featured-image" />
                         <h2 class="featured-title">${featuredPlaylist.playlist_name}</h2>
                         <p class="featured-author">Created by: ${featuredPlaylist.playlist_author}</p>
-                        <div class="playlist-footer">
-                            <button class="like-btn" aria-label="like/unlike">&#x2661;</button>
-                            <span class="likes">${featuredPlaylist.likes ?? 0}</span>
-                        </div>
                     </div>
                     <div class="featured-right">
                         <h3>Songs</h3>
@@ -65,31 +60,15 @@
                                         <p class="song-artist">${song.artist ?? ''}</p>
                                         <p class="song-album">${song.album ?? ''}</p>
                                     </div>
+                                    <div class="song-length">
+                                        <p>${song.length ?? ''}</p>
+                                    </div>
                                 </div>
                             `).join('')}
                         </div>
                     </div>
                 </div>
             `;
-
-            // Add event listener for the like button
-            const likeBtn = featuredSection.querySelector('.like-btn');
-            const likesSpan = featuredSection.querySelector('.likes');
-
-            if (likeBtn) {
-                likeBtn.addEventListener('click', () => {
-                    const liked = likeBtn.classList.toggle('liked');
-                    featuredPlaylist.likes = (featuredPlaylist.likes ?? 0) + (liked ? 1 : -1);
-                    likesSpan.textContent = featuredPlaylist.likes;
-
-                    // Change heart from outline to filled when liked
-                    if (liked) {
-                        likeBtn.innerHTML = '&#x2665;'; // Filled heart
-                    } else {
-                        likeBtn.innerHTML = '&#x2661;'; // Outline heart
-                    }
-                });
-            }
         }
 
         // Load the featured playlist when the page loads

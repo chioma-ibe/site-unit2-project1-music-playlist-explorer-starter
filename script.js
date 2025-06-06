@@ -61,7 +61,8 @@ function openModal(playlist) {
         // modalContent.appendChild(button)
         modalContent.innerHTML = `
         <div class="modal-buttons">
-          <button class="button1" id="closeBtn" autofocus>close</button>
+          <button class="delete-btn" id="deleteBtn">Delete Playlist</button>
+          <button class="button1" id="closeBtn" autofocus>Close</button>
         </div>
 
   <div class="playlist-info">
@@ -85,6 +86,9 @@ function openModal(playlist) {
           <p>${song.artist ?? ''}</p>
           <p>${song.album  ?? ''}</p>
         </div>
+        <div class="song-length">
+          <p>${song.length ?? ''}</p>
+        </div>
       </div>
     `).join('')}
   </div>
@@ -96,20 +100,23 @@ function openModal(playlist) {
         const closeBtn = modalContent.querySelector('#closeBtn');
         closeBtn.addEventListener('click', closeModal);
 
-        // Add event listener for the shuffle button
+        
         const shuffleBtn = modalContent.querySelector('#shuffleBtn');
         shuffleBtn.addEventListener('click', () => {
             shuffleSongs(currentPlaylist);
+        });
+
+        
+        const deleteBtn = modalContent.querySelector('#deleteBtn');
+        deleteBtn.addEventListener('click', () => {
+            deletePlaylist(playlist.playlistID);
         });
 
         modalOverlay.addEventListener('click', e => {
         if (e.target === modalOverlay) closeModal();
         });
 
-        // document.querySelector('#close').addEventListener('click', () => {
-        //     const modal = document.querySelector('.modal-overlay')
-        //     modal.style.display = 'none'
-        // });
+    
 }
 
 function closeModal() {
@@ -118,18 +125,31 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-// Function to shuffle songs in the playlist
+
+function deletePlaylist(playlistID) {
+  
+  const playlistIndex = playlists.findIndex(pl => pl.playlistID === playlistID);
+
+
+  if (playlistIndex !== -1) {
+    playlists.splice(playlistIndex, 1);
+
+
+    closeModal();
+
+    
+    loadPlaylists();
+  }
+}
+
 function shuffleSongs(playlist) {
-  // Create a copy of the songs array
   const songs = [...playlist.songs];
 
-  // Fisher-Yates (Knuth) shuffle algorithm
   for (let i = songs.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [songs[i], songs[j]] = [songs[j], songs[i]];
   }
 
-  // Update the songs list in the DOM
   const songsList = document.getElementById('songsList');
   songsList.innerHTML = songs.map(song => `
     <div class="playlist-songs">
@@ -138,6 +158,9 @@ function shuffleSongs(playlist) {
         <p>${song.title ?? song}</p>
         <p>${song.artist ?? ''}</p>
         <p>${song.album ?? ''}</p>
+      </div>
+      <div class="song-length">
+        <p>${song.length ?? ''}</p>
       </div>
     </div>
   `).join('');
