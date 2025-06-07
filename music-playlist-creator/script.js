@@ -1,19 +1,24 @@
-window.addEventListener('DOMContentLoaded', loadPlaylists);
+window.addEventListener('DOMContentLoaded', function() {
+    loadPlaylists();
+    setupSearch();
+});
 const modalOverlay = document.querySelector('.modal-overlay');
 const modalContent = document.querySelector('.modal-content');
 const cardContainer = document.getElementById('playlist-cards');
 
-async function loadPlaylists() {
+async function loadPlaylists(filteredPlaylists) {
     const container = document.getElementById('playlist-cards');
     container.innerHTML = '<p class="empty">Loading playlists…</p>';
 
-    if (window.playlists.length === 0) {
-        container.innerHTML = '<p class="empty">No playlists added</p>';
+    const playlistsToDisplay = filteredPlaylists || window.playlists;
+
+    if (playlistsToDisplay.length === 0) {
+        container.innerHTML = '<p class="empty">No playlists found</p>';
         return;
     } else {
         container.innerHTML = '';
 
-        window.playlists.forEach(pl => {
+        playlistsToDisplay.forEach(pl => {
             const card = document.createElement('article');
             card.className = 'playlist';
             card.id = `playlist${pl.playlistID}`;
@@ -282,6 +287,43 @@ function openEditModal(playlist) {
 
         closeModal();
         loadPlaylists();
+    });
+}
+
+function setupSearch() {
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+
+    function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+
+        if (searchTerm === '') {
+            loadPlaylists();
+            return;
+        }
+
+        const filteredPlaylists = window.playlists.filter(playlist => {
+            return (
+                playlist.playlist_name.toLowerCase().includes(searchTerm) ||
+                playlist.playlist_author.toLowerCase().includes(searchTerm) ||
+                playlist.songs.some(song =>
+                    (typeof song === 'string' && song.toLowerCase().includes(searchTerm)) ||
+                    (song.title && song.title.toLowerCase().includes(searchTerm)) ||
+                    (song.artist && song.artist.toLowerCase().includes(searchTerm)) ||
+                    (song.album && song.album.toLowerCase().includes(searchTerm))
+                )
+            );
+        });
+
+        loadPlaylists(filteredPlaylists);
+    }
+
+    searchButton.addEventListener('click', performSearch);
+
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
     });
 }
 

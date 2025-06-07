@@ -76,16 +76,16 @@ Deployed Application (**required**): [Music Playlist Explorer Deployed Site](htt
 - [x ] **Add New Playlists**
   - [ x] Allow users to create new playlists.
   - [ x] Using a form, users can input playlist:
-    - x[ ] Name
+    - [x] Name
     - [x ] Author
     - [x ] Cover image
     - [x ] Add one or more songs to the playlist, specifying the song's:
-      - [ ] Title
-      - [ ] Artist
-  - [ ] The resulting playlist should display in the grid view.
-  - [ ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** For ease of grading, please show yourself adding at least two songs to the playlist. 
+      - [ x] Title
+      - [x ] Artist
+  - [x ] The resulting playlist should display in the grid view.
+  - [x ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** For ease of grading, please show yourself adding at least two songs to the playlist. 
 
-- [ ] **Edit Existing Playlists**
+- [x ] **Edit Existing Playlists**
   - [ x] Enable users to modify the details of existing playlists.
   - [ x] Add an edit button to each playlist tile.
   - [ x] Users can update the playlist:
@@ -94,31 +94,31 @@ Deployed Application (**required**): [Music Playlist Explorer Deployed Site](htt
     - [ x] Songs
   - [ x] The playlist grid view and playlist detail modal should update to display any changes (see Required Features, Criterion 1 & 2).
   - [x ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** For ease of grading, please show yourself:
-    - [ ] Editing all of a playlist's features (name, creator, AND songs)
+    - [ x] Editing all of a playlist's features (name, creator, AND songs)
     - [ x] Editing some of a playlist's features (name, creator, OR songs) 
 
-- [ ] **Delete Playlists**
+- [ x] **Delete Playlists**
   - [x ] Add a delete button to each playlist tile within the grid view.
   - [ x] When clicked, the playlist is removed from the playlist grid view.
 
 - [ ] **Search Functionality**
   - [ ] Implement a search bar that allows users to filter playlists by:
-    - [ ] Name 
+    - [x ] Name 
     - [ ] Author
   - [ ] The search bar should include:
-    - [ ] Text input field
-    - [ ] Submit/Search Button
+    - [ x] Text input field
+    - [ x] Submit/Search Button
     - [ ] Clear Button
-  - [ ] Playlists matching the search query in the text input are displayed in a grid view when the user:
-    - [ ] Presses the Enter Key
-    - [ ] Clicks the Submit/Search Button 
-  - [ ] User can click the clear button. When clicked:
-    - [ ] All text in the text input field is deleted
-    - [ ] All playlists in the `data.json` file are displayed in a grid view
+  - [ x] Playlists matching the search query in the text input are displayed in a grid view when the user:
+    - [x ] Presses the Enter Key
+    - [ x] Clicks the Submit/Search Button 
+  - [ ]x User can click the clear button. When clicked:
+    - [ x] All text in the text input field is deleted
+    - [ x] All playlists in the `data.json` file are displayed in a grid view
     - [ ] **Optional:** If the Add Playlist, Edit Existing Playlist, or Delete Playlist stretch features were implemented:
-      - [ ] If users can add a playlist, added playlists should be included in search results.
-      - [ ] If users can edit a playlist, search results should reflect the latest edits to each playlist.
-      - [ ] If users can delete a playlist, deleted playlists should no longer be included in search results.
+      - [ x] If users can add a playlist, added playlists should be included in search results.
+      - [ x] If users can edit a playlist, search results should reflect the latest edits to each playlist.
+      - [ x] If users can delete a playlist, deleted playlists should no longer be included in search results.
       - **Note:** You will not be graded on the implementation of this optional subfeature to keep your grade of this stretch feature independent of your implementation of other stretch features. However, we highly suggest including this in your implementation to model realistic behavior of real applications. 
 
 - [ ] **Sorting Options**
@@ -130,7 +130,7 @@ Deployed Application (**required**): [Music Playlist Explorer Deployed Site](htt
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, https://www.loom.com/share/d009afafc05240e48f7e7b54c86f5b1f?sid=1b984f78-5691-47e6-892e-1005dee7a7f2. Make sure the video actually renders and is playable when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
+`TODO://` Add the embedded URL code to your animated app walkthrough below, https://www.loom.com/share/116c027626de468bb5c39de4751e6f74?sid=6d7340aa-0960-4d1e-bc8d-87252d60b51d. Make sure the video actually renders and is playable when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
 
 `ADD_EMBEDDED_CODE_HERE`
 

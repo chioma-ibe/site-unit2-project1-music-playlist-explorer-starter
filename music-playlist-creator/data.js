@@ -4,7 +4,7 @@ window.playlists = [
     "playlistID": "001",
     "playlist_name": "just Vibes",
     "playlist_author": "DJ Smooth",
-    "playlist_art": "https://picsum.photos/300?random=1",
+    "playlist_art": "https://picsum.photos/seed/playlist1/300/300",
     "likes": 0,
     "songs": [
       {
@@ -28,7 +28,7 @@ window.playlists = [
     "playlistID": "002",
     "playlist_name": "Workout Hits",
     "playlist_author": "BeastMode",
-    "playlist_art": "https://picsum.photos/300?random=2",
+    "playlist_art": "https://picsum.photos/seed/playlist2/300/300",
     "likes": 17,
     "songs": [
       {
@@ -52,7 +52,7 @@ window.playlists = [
   playlistID: "003",
   playlist_name: "Sunday Chill",
   playlist_author: "LoFiGuru",
-  playlist_art: "https://picsum.photos/300?random=3",
+  playlist_art: "https://picsum.photos/seed/playlist3/300/300",
   likes: 42,
   songs: [
     {
@@ -76,7 +76,7 @@ window.playlists = [
   playlistID: "004",
   playlist_name: "Throwback Jams",
   playlist_author: "RetroKing",
-  playlist_art: "https://picsum.photos/300?random=4",
+  playlist_art: "https://picsum.photos/seed/playlist4/300/300",
   likes: 98,
   songs: [
     {
@@ -100,7 +100,7 @@ window.playlists = [
   playlistID: "005",
   playlist_name: "Focus & Study",
   playlist_author: "BrainBoost",
-  playlist_art: "https://picsum.photos/300?random=5",
+  playlist_art: "https://picsum.photos/seed/playlist5/300/300",
   likes: 65,
   songs: [
     {
@@ -124,7 +124,7 @@ window.playlists = [
   playlistID: "006",
   playlist_name: "Late‑Night Drive",
   playlist_author: "Moonwalker",
-  playlist_art: "https://picsum.photos/300?random=6",
+  playlist_art: "https://picsum.photos/seed/playlist6/300/300",
   likes: 23,
   songs: [
     {
@@ -148,7 +148,7 @@ window.playlists = [
   playlistID: "007",
   playlist_name: "Afrobeat Heat",
   playlist_author: "NaijaVibes",
-  playlist_art: "https://picsum.photos/300?random=7",
+  playlist_art: "https://picsum.photos/seed/playlist7/300/300",
   likes: 80,
   songs: [
     {
@@ -172,7 +172,7 @@ window.playlists = [
   playlistID: "008",
   playlist_name: "Pop Essentials",
   playlist_author: "ChartTopper",
-  playlist_art: "https://picsum.photos/300?random=8",
+  playlist_art: "https://picsum.photos/seed/playlist8/300/300",
   likes: 57,
   songs: [
     {
@@ -196,7 +196,7 @@ window.playlists = [
   playlistID: "009",
   playlist_name: "Jazz Classics",
   playlist_author: "BlueNote",
-  playlist_art: "https://picsum.photos/300?random=9",
+  playlist_art: "https://picsum.photos/seed/playlist9/300/300",
   likes: 34,
   songs: [
     {
